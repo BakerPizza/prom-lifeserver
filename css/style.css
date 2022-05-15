@@ -1,0 +1,192 @@
+* {
+    box-sizing: border-box;
+}
+
+canvas {
+
+    display: block;
+    margin: 0 auto;
+}
+
+body {
+
+    margin: 0;
+    padding: 0;
+
+
+}
+
+.block {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    height: 12%;
+    width: 100%;
+    background: url(../images/hud-bg.png);
+}
+
+.align-items{
+    align-items: center;
+}
+
+.time{
+    margin-top: 5px;
+}
+
+.field {
+
+    padding: 0;
+    width: 100%;
+    height: 88%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    background: #2b2f29;
+    text-align: justify;
+}
+
+.qwe{
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.excel {
+    background: url(../images/ground.png);
+    margin: 0;
+    padding: 0;
+    width: 64px;
+    height: 64px;
+    vertical-align: top;
+    text-align: justify;
+
+}
+
+.doctor {
+    z-index: 9999;
+    background: url(../images/player.png);
+    background-size: cover;
+    border-radius: 7%;
+}
+
+.earth {
+
+    background: #2b2f29;
+    background-size: cover;
+
+
+}
+
+.heart {
+    background: url(../images/heart-in-stone.svg);
+    background-size: cover;
+    z-index: 9999;
+
+}
+
+.stone {
+    background: url(../images/stone.png);
+    background-size: cover;
+    z-index: 100;
+}
+
+.worm {
+    background: url(../images/worm.png);
+    background-size: cover;
+z-index: 1;
+}
+
+.content {
+
+    margin-top: 250px;
+}
+
+.btn-start {
+    margin-left: 10px;
+}
+
+.da {
+    margin-top: 30px;
+}
+
+.start-content {
+
+    display: flex;
+    justify-content: center;
+}
+
+.text-title {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.time {
+    margin-left: 4px;
+}
+
+.nick {
+    padding-top: 10px;
+    text-align: center;
+
+}
+
+.row {
+    align-items: center;
+
+
+    display: flex;
+}
+
+.center {
+
+    justify-content: center;
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.timer {
+    width: 32px;
+    height: 32px;
+
+    margin-left: 10px;
+}
+
+.score {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.popup-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    display: none;
+    z-index: 8988765;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.ms-1{
+    margin-left: 50px;
+}
+
+.popup {
+    position: absolute;
+    background: #ffffff;
+    width: 400px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    padding-top: 60px;
+    z-index: 5465436;
+}

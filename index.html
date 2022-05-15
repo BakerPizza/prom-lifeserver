@@ -1,0 +1,95 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lifeSaver</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body id="body">
+
+
+<div class="popup-bg">
+    <div class="popup">
+
+        <div id="text-end" class="text-end"></div>
+        <div id="score-end" class="score-end"></div>
+        <br>
+        <br>
+        <button id="restart">Рестарт</button>
+
+        <br>
+        <br>
+    </div>
+</div>
+<div class="gamez" id="gamez">
+
+    <div class="block" id="block">
+        <div class="row space-between">
+            <div>
+                <div class="row">
+
+                    <img src="images/logo.png" alt="" srcset="">
+                    <div class="row align-items">
+
+                        <img src="images/user.png" class="ms-1" alt="" srcset="">
+                        <div class="nick" id="nick"></div>
+
+                        <img class="timer ms-1" src="images/clock.png" alt="">
+                        <div class="time">
+
+                            <span id="minute">00</span>
+                            <span id="second">00</span>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <button id="re">Рестарт</button>
+            <div class="row">
+                <img src="images/heart.png" alt="" class="qwe" srcset="">
+                <div class="score" id="score">0</div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <div class="content" id="content">
+
+        <div class="row center">
+            <img src="images/logo.png" class="logo-start">
+        </div>
+        <h1 class="text-center">
+            lifeSaver <br>
+            Работу выполнил: Сарновский Даниил
+        </h1>
+
+        <div class="text-title" id="text">
+            A game about the doctor who saves lives of ill people after a earthquake by collecting hearts in
+            dangerous
+            caves
+        </div>
+        <div class="text-center">Please, enter your username here</div>
+        <div class="start-content">
+
+            <input type="text" id="input" placeholder="Ведите ник">
+
+            <button class="btn-start" id="btn">Начать игру</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="jquery-3.6.0.min.js"></script>
+<script src="lifeSaver.js"></script>
+</body>
+</html>

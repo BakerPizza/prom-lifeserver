@@ -1,0 +1,192 @@
+let field = document.createElement('div');
+document.body.appendChild(field);
+field.classList.add('field');
+
+let score = 0;
+
+for (let i = 1; i < 101; i++) {
+    let excel = document.createElement('div');
+    field.appendChild(excel);
+    excel.classList.add('excel');
+}
+
+let excel = document.getElementsByClassName('excel');
+let x = 1,
+    y = 10;
+
+for (let i = 0; i < excel.length; i++) {
+    if (x > 10) {
+        x = 1;
+        y--;
+    }
+
+    excel[i].setAttribute('posX', x);
+    excel[i].setAttribute('posY', y);
+    x++;
+
+}
+
+function generateDoctor() {
+    let posX = 1;
+    let posY = 10;
+    return [posX, posY];
+}
+
+let coordinates = generateDoctor();
+let doctorBody = [document.querySelector('[posX="' + coordinates[0] + '"][posY="' + coordinates[1] + '"]')];
+
+doctorBody[0].classList.add('doctor');
+
+let heart = [];
+let stone;
+
+function createHeart(count) {
+    function generateHeart() {
+        let posX = Math.round(Math.random() * (10 - 1) + 1);
+        let posY = Math.round(Math.random() * (10 - 1) + 1);
+        return [posY, posX];
+    }
+
+    console.log(count);
+    for (let i = 0; i < count; i++) {
+
+        let heartCoordinates = generateHeart();
+        heart[i] = document.querySelector('[posX="' + heartCoordinates[0] + '"][posY="' + heartCoordinates[1] + '"]');
+
+        while (heart[i].classList.contains('doctorBody')) {
+
+            let heartCoordinates = generateHeart();
+            heart[i] = document.querySelector('[posX="' + heartCoordinates[0] + '"][posY="' + heartCoordinates[1] + '"]');
+
+        }
+
+        heart[i].classList.add('heart');
+    }
+
+}
+
+let heartCount = 5;
+createHeart(heartCount);
+
+let direction = 'left';
+
+let Falls = false;
+
+function move() {
+    console.log(heart)
+    let doctorCoordinates = [doctorBody[0].getAttribute('posX'), doctorBody[0].getAttribute('posY')];
+
+    doctorBody[0].classList.remove('doctor');
+
+    doctorBody.pop();
+
+    if (direction == 'right') {
+
+        if (doctorCoordinates[0] < 10) {
+
+            doctorBody.unshift(document.querySelector('[posX="' + (+doctorCoordinates[0] + 1) + '"][posY="' + doctorCoordinates[1] + '"]'));
+        } else {
+            doctorBody.unshift(document.querySelector('[posX="' + (+doctorCoordinates[0]) + '"][posY="' + doctorCoordinates[1] + '"]'));
+        }
+    } else if (direction == 'left') {
+
+        if (doctorCoordinates[0] > 1) {
+
+            doctorBody.unshift(document.querySelector('[posX="' + (+doctorCoordinates[0] - 1) + '"][posY="' + doctorCoordinates[1] + '"]'));
+        } else {
+            doctorBody.unshift(document.querySelector('[posX="' + (+doctorCoordinates[0]) + '"][posY="' + doctorCoordinates[1] + '"]'));
+        }
+    } else if (direction == 'up') {
+
+        if (doctorCoordinates[1] < 10) {
+
+            doctorBody.unshift(document.querySelector('[posX="' + doctorCoordinates[0] + '"][posY="' + (+doctorCoordinates[1] + 1) + '"]'));
+        } else {
+            doctorBody.unshift(document.querySelector('[posX="' + (+doctorCoordinates[0]) + '"][posY="' + doctorCoordinates[1] + '"]'));
+        }
+    } else if (direction == 'down') {
+
+        if (doctorCoordinates[1] > 1) {
+
+            doctorBody.unshift(document.querySelector('[posX="' + doctorCoordinates[0] + '"][posY="' + (+doctorCoordinates[1] - 1) + '"]'));
+        } else {
+            doctorBody.unshift(document.querySelector('[posX="' + (+doctorCoordinates[0]) + '"][posY="' + doctorCoordinates[1] + '"]'));
+        }
+    }
+
+    for (let i = 0; i < heart.length; i++) {
+
+        if (typeof heart[i] !== 'undefined') {
+            if (doctorBody[0].getAttribute('posX') == heart[i].getAttribute('posX') && doctorBody[0].getAttribute('posY') == heart[i].getAttribute('posY') - 1) {
+
+                function fallHeart() {
+
+                    if (typeof heart[i] !== 'undefined') {
+                        heart[i].classList.remove('heart');
+                        heart[i] = document.querySelector('[posX="' + heart[i].getAttribute('posX') + '"][posY="' + (heart[i].getAttribute('posY') - 1) + '"]');
+                        heart[i].classList.add('heart');
+
+                        if (heart[i].getAttribute('posY') == 1) {
+                            heart[i].classList.remove('heart');
+                            clearInterval(fallHeartEnd);
+                            delete heart[i];
+
+// heart.splice(i+1,1);
+// heart = heart.slice(0, i+1).concat(heart.slice(i + 1, heart.length));
+// heart.splice(i, 1);
+
+                        }
+
+                    }
+                }
+            }
+            let fallHeartEnd = setInterval(fallHeart, 1600);
+
+            if (doctorBody[0].getAttribute('posX') == heart[i].getAttribute('posX') && doctorBody[0].getAttribute('posY') == heart[i].getAttribute('posY')) {
+                heart[i].classList.remove('heart');
+                score++;
+                if (typeof fallHeartEnd !== 'undefined') {
+                    clearInterval(fallHeartEnd);
+                }
+
+                heart[i].classList.remove('heart');
+                delete heart[i];
+//heart.splice(i+1,1);
+// heart = heart.slice(0, i+1).concat(heart.slice(i + 1, heart.length));
+
+                console.log(heart);
+
+                if (heartCount === score) {
+                    console.log('ты победил');
+                }
+
+            }
+
+        }
+    }
+    let fieldChange = document.querySelector('[posX="' + doctorCoordinates[0] + '"][posY="' + doctorCoordinates[1] + '"]');
+
+    fieldChange.classList.add('earth');
+
+    doctorBody[0].classList.remove('earth');
+    doctorBody[0].classList.add('doctor');
+
+}
+
+let interval = setInterval(move, 300);
+
+window.addEventListener('keydown', function (e) {
+    if (e.keyCode == 87) {
+        direction = 'up';
+    }
+    if (e.keyCode == 65) {
+        direction = 'left';
+    }
+    if (e.keyCode == 83) {
+        direction = 'down';
+    }
+    if (e.keyCode == 68) {
+        direction = 'right';
+    }
+
+});
